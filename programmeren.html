@@ -1,18 +1,109 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <style>
+            body{
+                background-image: url('afbeeldingen/landscape2.jpg');
+                background-size: 400px 400px;
+            }
+            header{
+                border: 1px solid red;
+
+            }
+            p{
+                color:blue;
+                font-weight: 900;
+                line-height: 20px;
+                text-transform: uppercase;
+                background-color: coral;
+                margin: 30px;
+                padding: 25px;
+            }
+            p.subtext{
+                color:rgba(200, 50, 120, 0.4);
+            }
         </style>
         <script>
-            function naamvaneenfunctie(){
-                alert("hoppa");
+            var studenten;
+            window.onload = uitlezen;
+            function inschrijven(){
+                var student = {};
+                student.firstname = document.getElementById("fvoornaam").value;
+                student.lastname = document.getElementById("fachternaam").value;
+                student.birthdate = document.getElementById("fgebdatum").value;
+                student.gehuwd = document.getElementById("fgehuwd").checked;
+                student.progErvaring = getErvaring();
+                studenten.push(student);
+                var studentenJson = JSON.stringify(studenten);
+                localStorage.setItem("mijnstudenten", studentenJson);
+ 
+            }
+            function uitlezen(){
+                var opTeHalen = localStorage.getItem("mijnstudenten");
+                console.log(opTeHalen);
+                var opgehaaldObject = JSON.parse(opTeHalen);
+                console.log(opgehaaldObject);
+                studenten = opgehaaldObject;
+            }
+            function getErvaring(){
+                var deTalen = document.getElementsByName("progerv");
+                for(var x = 0; x < deTalen.length ; x++){
+                    if(  deTalen[x].checked  ){
+                        return deTalen[x].value;
+                    }
+                }
+
+            }
+            function starten(){
+                alert("in starten");
             }
         </script>
     </head>
     <body>
-        <p>
-            Zet hier maar wat tekst neer
-        </p>
-        <input type="button" value="klik maar" onclick="naamvaneenfunctie()">
+        <header>
+        <button onclick=starten()>go</button>
+        <form>
+            Voornaam: <input type="text" id="fvoornaam">
+            <span class=subtext> Hier wat extra tekst </span>
+            <br>
+            Achternaam: <input type="text" id="fachternaam">
+            <br>
+            GeboorteDatum: <input type="date" id="fgebdatum">
+            <br>
+            Gehuwd: <input type="checkbox" id="fgehuwd">
+            <br>
+            C#<input type="radio" name="progerv" value="C#">
+            java<input type="radio" name="progerv" value="java">
+            PHP<input type="radio" name="progerv" value="php">
+            <input type=button value="inschrijven" onclick="inschrijven()">
+            <input type="button" value="uitlezen" onclick="uitlezen()">
+            <ol type=a>
+            <a href="tweedepagina.html"> naar de andere pagina</a>
+            <li>hallo</li>
+            <li>doei</li>
+            </ol>
+            <p>
+                Zet hier wat tekst neer.
+                Tientallen Nederlandse toeristen zitten al dagen vast in Ecuador. Hun reisgezelschappen kunnen niet verder reizen door wegblokkades. In het land zijn al een week hevige protesten gaande, gericht tegen bezuinigingsplannen van president Moreno.
+
+Het ministerie van Buitenlandse Zaken heeft contact met twee reisgezelschappen van in totaal 35 Nederlanders. Ook hebben enkele individuele reizigers zich gemeld. "Ze maken zich bijvoorbeeld zorgen om hun veiligheid", vertelt een woordvoerder van het ministerie.
+
+Reisorganisatie Sawadee heeft momenteel een groep van 16 Nederlandse toeristen in het land. Ze zitten al vijf dagen vast in het dorpje Guamote, iets buiten de stad Riobamba. De toeristen mogen hun hotel wel uit, maar kunnen niet verder reizen.
+
+Volgens het reisschema had de groep moeten doorreizen naar de Galapagos-eilanden, maar die bestemming is nu geschrapt. "Demonstranten hebben wegblokkades opgeworpen door bijvoorbeeld bomen op de weg te leggen", vertelt een woordvoerder Sawadee. "Zolang je die roadblocks niet wil passeren, is er niets aan de hand. Maar als je er wel langs wil, kan je in de problemen komen".
+            </p>
+            <p class=subtext>
+                    Zet hier wat tekst neer.
+                    Tientallen Nederlandse toeristen zitten al dagen vast in Ecuador. Hun reisgezelschappen kunnen niet verder reizen door wegblokkades. In het land zijn al een week hevige protesten gaande, gericht tegen bezuinigingsplannen van president Moreno.
+    
+    Het ministerie van Buitenlandse Zaken heeft contact met twee reisgezelschappen van in totaal 35 Nederlanders. Ook hebben enkele individuele reizigers zich gemeld. "Ze maken zich bijvoorbeeld zorgen om hun veiligheid", vertelt een woordvoerder van het ministerie.
+    
+    Reisorganisatie Sawadee heeft momenteel een groep van 16 Nederlandse toeristen in het land. Ze zitten al vijf dagen vast in het dorpje Guamote, iets buiten de stad Riobamba. De toeristen mogen hun hotel wel uit, maar kunnen niet verder reizen.
+    
+    Volgens het reisschema had de groep moeten doorreizen naar de Galapagos-eilanden, maar die bestemming is nu geschrapt. "Demonstranten hebben wegblokkades opgeworpen door bijvoorbeeld bomen op de weg te leggen", vertelt een woordvoerder Sawadee. "Zolang je die roadblocks niet wil passeren, is er niets aan de hand. Maar als je er wel langs wil, kan je in de problemen komen".
+                </p>
+        </form>
+    </header>
     </body>
 </html>
